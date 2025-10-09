@@ -4,8 +4,8 @@
 // Include API key from config.h (git-ignored)
 #include "../config.h"
 
-// Use v1 API with stable model name
-#define GEMINI_API_URL "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent"
+// Gemini API endpoint - using v1beta with gemini-2.5-flash
+#define GEMINI_API_URL "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
 
 // Debug configuration
 // Set to 1 to enable debug logging to /tmp/pocketgem_debug.log
