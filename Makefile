@@ -1,8 +1,8 @@
 # pocketGem Makefile for Next Thing CHIP (GTK/XFCE)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -O2 `pkg-config --cflags gtk+-3.0`
-LDFLAGS = `pkg-config --libs gtk+-3.0`
+CFLAGS = -Wall -Wextra -O2 `pkg-config --cflags gtk+-3.0` -I$(SRC_DIR)
+LDFLAGS = `pkg-config --libs gtk+-3.0` -lcurl
 
 TARGET = pocketgem
 SRC_DIR = src

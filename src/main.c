@@ -1,6 +1,7 @@
 #include <gtk/gtk.h>
 #include <stdlib.h>
 #include <string.h>
+#include "gemini.h"
 
 typedef struct {
     GtkWidget *window;
@@ -16,21 +17,13 @@ static void on_submit_clicked(GtkWidget *button, gpointer user_data);
 static void on_entry_activate(GtkWidget *entry, gpointer user_data);
 static gboolean hide_splash(gpointer user_data);
 
-// TODO: Implement actual Gemini API call
-static char* send_to_gemini(const char *question) {
-    // Placeholder - will be replaced with actual API call
-    char *response = g_strdup_printf("You asked: %s\n\nThis is a placeholder response. "
-                                     "Gemini API integration will be added here.", question);
-    return response;
-}
-
 static void on_submit_clicked(GtkWidget *button, gpointer user_data) {
     AppWidgets *widgets = (AppWidgets *)user_data;
     const char *question = gtk_entry_get_text(GTK_ENTRY(widgets->input_entry));
 
     if (strlen(question) > 0) {
         // Get response from Gemini
-        char *response = send_to_gemini(question);
+        char *response = gemini_send_question(question);
 
         // Append to text buffer
         GtkTextIter end;
@@ -136,10 +129,16 @@ int main(int argc, char **argv) {
     GtkApplication *app;
     int status;
 
+    // Initialize Gemini API client
+    gemini_init();
+
     app = gtk_application_new("com.pocketchip.pocketgem", G_APPLICATION_FLAGS_NONE);
     g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);
     status = g_application_run(G_APPLICATION(app), argc, argv);
     g_object_unref(app);
+
+    // Cleanup Gemini API client
+    gemini_cleanup();
 
     return status;
 }

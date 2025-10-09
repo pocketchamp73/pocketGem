@@ -6,7 +6,7 @@
 
 ```bash
 sudo apt-get update
-sudo apt-get install build-essential libgtk-3-dev pkg-config
+sudo apt-get install build-essential libgtk-3-dev pkg-config libcurl4-openssl-dev
 ```
 
 ### Comprehensive Setup (Recommended)
@@ -21,7 +21,8 @@ sudo apt-get install build-essential pkg-config \
   libcairo2.0-dev \
   libpango1.0-dev \
   libgdk-pixbuf2.0-dev \
-  libatk1.0-dev
+  libatk1.0-dev \
+  libcurl4-openssl-dev
 ```
 
 ### Additional Useful Packages
