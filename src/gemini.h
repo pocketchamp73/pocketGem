@@ -6,6 +6,10 @@
 #define GEMINI_API_KEY "YOUR_API_KEY_HERE"
 #define GEMINI_API_URL "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent"
 
+// Debug configuration
+// Set to 1 to enable debug logging to /tmp/pocketgem_debug.log
+#define GEMINI_DEBUG 1
+
 /**
  * Send a question to Gemini API and get a response
  * @param question The question to ask
