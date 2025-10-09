@@ -1,9 +1,9 @@
 #ifndef GEMINI_H
 #define GEMINI_H
 
-// Gemini API configuration
-// IMPORTANT: Set your API key here before compiling
-#define GEMINI_API_KEY "YOUR_API_KEY_HERE"
+// Include API key from config.h (git-ignored)
+#include "../config.h"
+
 #define GEMINI_API_URL "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent"
 
 // Debug configuration

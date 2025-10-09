@@ -24,7 +24,11 @@ For detailed dependency information, see [docs/dependencies.md](docs/dependencie
 ## Setup
 
 1. Clone this repository to your pocketCHIP
-2. Edit `src/gemini.h` and replace `YOUR_API_KEY_HERE` with your Gemini API key
+2. Copy the example config file and add your API key:
+   ```bash
+   cp config.h.example config.h
+   # Edit config.h and replace YOUR_API_KEY_HERE with your Gemini API key
+   ```
 3. Build the application:
    ```bash
    make build

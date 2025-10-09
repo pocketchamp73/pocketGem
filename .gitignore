@@ -5,6 +5,9 @@ build/
 *.so
 pocketgem
 
+# Configuration files with secrets
+config.h
+
 # Editor files
 *.swp
 *.swo
