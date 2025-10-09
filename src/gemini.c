@@ -33,9 +33,10 @@ static size_t write_callback(void *contents, size_t size, size_t nmemb, void *us
 
 // Simple JSON string escaping
 static char* escape_json_string(const char *str) {
+    const char *p;
     GString *escaped = g_string_new("");
 
-    for (const char *p = str; *p; p++) {
+    for (p = str; *p; p++) {
         switch (*p) {
             case '"':  g_string_append(escaped, "\\\""); break;
             case '\\': g_string_append(escaped, "\\\\"); break;
