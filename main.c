@@ -19,8 +19,6 @@ static gboolean hide_splash(gpointer user_data);
 
 static void on_submit_clicked(GtkWidget *button, gpointer user_data) {
     AppWidgets *widgets = (AppWidgets *)user_data;
-    GdkDisplay *display;
-    GdkCursor *cursor;
     const char *question = gtk_entry_get_text(GTK_ENTRY(widgets->input_entry));
 
     if (strlen(question) > 0) {
@@ -37,7 +35,7 @@ static void on_submit_clicked(GtkWidget *button, gpointer user_data) {
             g_object_unref(cursor); 
         }
         while (gtk_events_pending()) {
-        gtk_main_iteration_do(FALSE);
+            gtk_main_iteration_do(FALSE);
         }
 
         // Get response from Gemini
