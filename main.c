@@ -24,12 +24,21 @@ static void on_submit_clicked(GtkWidget *button, gpointer user_data) {
     const char *question = gtk_entry_get_text(GTK_ENTRY(widgets->input_entry));
 
     if (strlen(question) > 0) {
-        // set cursor to watch and lock it out
-        display = gdk_window_get_display(widgets->window);
-        cursor = gdk_cursor_new_for_display(display, GDK_WATCH);
-        gdk_window_set_cursor(gdk_window, cursor);
-        g_object_unref(cursor);
-        gdk_window_flush();
+        
+        // set the cursor
+        if (widgets->input_entry) {
+            gtk_widget_set_focus_child(widgets->window, NULL);
+        }
+        GdkWindow *gdk_window = gtk_widget_get_window(widgets->window)
+        if (gdk_window) {
+            GdkDisplay *display = gdk_window_get_display(gdk_window);
+            GdkCursor *cursor = gdk_cursor_new_from_name(display, "wait"); 
+            gdk_window_set_cursor(gdk_window, cursor);
+            g_object_unref(cursor); 
+        }
+        while (gtk_events_pending()) {
+        gtk_main_iteration_do(FALSE);
+        }
 
         // Get response from Gemini
         char *response = gemini_send_question(question);
@@ -53,8 +62,13 @@ static void on_submit_clicked(GtkWidget *button, gpointer user_data) {
         gtk_entry_set_text(GTK_ENTRY(widgets->input_entry), "");
 
         // unset the cursor
-        gdk_window_set_cursor(widget->window, NULL);
-        gdk_window_flush();
+        if (gdk_window) {
+            gdk_window_set_cursor(gdk_window, NULL);
+            gdk_window_flush();
+        }
+        if (widgets->input_entry) {
+            gtk_widget_grab_focus(widgets->input_entry);
+        }
     }
 }
 
